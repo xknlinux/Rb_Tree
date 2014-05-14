@@ -1,16 +1,9 @@
-<<<<<<< HEAD
-﻿#include"version.h"
+#include"version.h"
 #include<stdio.h>
 #include<malloc.h>
 #include"rb_tree.h"
 
 
-=======
-﻿#include<stdio.h>
-#include<malloc.h>
-#include"rb_tree.h"
-
->>>>>>> cff96cf9f0384fd4127c5a43c5ecb66677ef5a59
 int Rb_Delete(RB_TREE **Root)
 {
 	int iData;
@@ -27,23 +20,19 @@ int Rb_Delete(RB_TREE **Root)
 		else
 			f = f->ST_Right;
 	}
-<<<<<<< HEAD
-	if (f == NULL)
-=======
 	if(f == NULL)
->>>>>>> cff96cf9f0384fd4127c5a43c5ecb66677ef5a59
 	{
 		printf("no find you wang data\n");
 		return -1;
 	}
-	else
-		Rb_Delete_Data(Root, f);
+//	else
+//		Rb_Delete_Data(Root, f);
 }
 
-int Rb_Delete_Data(RB_TREE **Root, RB_TREE *Z)
+/*int Rb_Delete_Data(RB_TREE **Root, RB_TREE *Z)
 {
 
-}
+}*/
 
 int Rb_Insert(RB_TREE **Root)
 {

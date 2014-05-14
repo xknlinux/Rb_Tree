@@ -1,18 +1,11 @@
-<<<<<<< HEAD
 #include"version.h"
-=======
->>>>>>> cff96cf9f0384fd4127c5a43c5ecb66677ef5a59
 #include<stdlib.h>
 #include<stdio.h>
 #include"rb_tree.h"
 
-<<<<<<< HEAD
-
-=======
->>>>>>> cff96cf9f0384fd4127c5a43c5ecb66677ef5a59
 int main(int argc, char *argv[])
 {
-    int n;
+	int n;
     RB_TREE *Root = NULL;
     while(1)
     {
