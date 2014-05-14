@@ -16,7 +16,7 @@ int Rb_Insert(RB_TREE **Root);
 int Rb_Insert_Data(RB_TREE **Root, RB_TREE *New);
 int Rb_Insert_Fixup(RB_TREE **Root, RB_TREE *New);
 int Rb_Delete(RB_TREE **Root);
-//int Rb_Delete_Data(RB_TREE **Root, RB_TREE *Z)
+int Rb_Delete_Data(RB_TREE **Root, RB_TREE *Z)
 //int Rb_Delete_Fixup(RB_TREE **Root, RB_TREE *New);
 int print(RB_TREE *bt, int n);
 

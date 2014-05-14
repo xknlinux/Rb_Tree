@@ -25,14 +25,14 @@ int Rb_Delete(RB_TREE **Root)
 		printf("no find you wang data\n");
 		return -1;
 	}
-//	else
-//		Rb_Delete_Data(Root, f);
+	else
+		Rb_Delete_Data(Root, f);
 }
 
-/*int Rb_Delete_Data(RB_TREE **Root, RB_TREE *Z)
+int Rb_Delete_Data(RB_TREE **Root, RB_TREE *Z)
 {
 
-}*/
+}
 
 int Rb_Insert(RB_TREE **Root)
 {
