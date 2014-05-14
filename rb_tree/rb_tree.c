@@ -2,6 +2,36 @@
 #include<malloc.h>
 #include"rb_tree.h"
 
+int Rb_Delete(RB_TREE **Root)
+{
+	int iData;
+	RB_TREE *f = *Root;
+	
+	printf("input you want delete data....\n");
+	scanf("%d", &iData);
+	while(f != NULL)
+	{
+		if(f->iNum == iData)
+			break;
+		else if(f->iNum > iData)
+			f = f->ST_Left;
+		else
+			f = f->ST_Right;
+	}
+	if(f == NULL)
+	{
+		printf("no find you wang data\n");
+		return -1;
+	}
+	else
+		Rb_Delete_Data(Root, f);
+}
+
+int Rb_Delete_Data(RB_TREE **Root, RB_TREE *Z)
+{
+
+}
+
 int Rb_Insert(RB_TREE **Root)
 {
     RB_TREE *New = (RB_TREE *)malloc(sizeof(RB_TREE));
@@ -70,7 +100,7 @@ int Rb_Insert_Fixup(RB_TREE **Root, RB_TREE *New)
             Right_Rotate(Root, New->ST_Parent->ST_Parent);
         }
         
-        else    //New的父结点是New的组读结点的右孩子
+        else    //New的父结点是New的祖父结点的右孩子
         {
             y = New->ST_Parent->ST_Parent->ST_Left;//情况1
             if(y == NULL || y->iColor == 'R')

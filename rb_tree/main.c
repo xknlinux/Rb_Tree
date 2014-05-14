@@ -8,19 +8,22 @@ int main(int argc, char *argv[])
     RB_TREE *Root = NULL;
     while(1)
     {
-       // printf("******************************\n*0: exit(0).                 *\n*1:input you wang inset data.*\n*2:delete the data:          *\n*3:print the tree.           *\n******************************\n\n\n");
-       // scanf("%d", &n);
-        n=1;
+        printf("******************************\n*0: exit(0).                 *\n*1:input you wang inset data.*\n*2:delete the data:          *\n*3:print the tree.           *\n******************************\n\n\n");
+        scanf("%d", &n);
         switch(n)
         {
             case 0:
                 exit(0);
             case 1: 
                 Rb_Insert(&Root);
+				break;
             case 2:
+				Rb_Delete(&Root);
+				break;
             case 3:
                 print(Root, 0);
                 printf("\n");
+				break;
             default:
                 continue;
         }
