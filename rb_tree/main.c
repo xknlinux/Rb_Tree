@@ -3,6 +3,20 @@
 #include<stdio.h>
 #include"rb_tree.h"
 
+int print(RB_TREE *bt, int n)
+{
+	int i;
+	if (bt == NULL)
+		return 0;
+	print(bt->ST_Right, n + 1);
+	for (i = 0; i<n; i++)
+		printf("    ");
+	printf("[%d %c]\n", bt->iNum, bt->iColor);
+	print(bt->ST_Left, n + 1);
+	return 0;
+}
+
+
 int main(int argc, char *argv[])
 {
 	int n;
@@ -32,15 +46,3 @@ int main(int argc, char *argv[])
     return 0;
 }
 
-int print(RB_TREE *bt, int n)
-{
-    int i;
-    if(bt == NULL)
-        return 0;
-    print(bt->ST_Right, n+1);
-    for(i = 0; i<n; i++)
-        printf("    ");
-    printf("[%d %c]\n", bt->iNum, bt->iColor);
-    print(bt->ST_Left, n+1);
-    return 0;
-}

@@ -31,7 +31,7 @@ int Rb_Delete(RB_TREE **Root)
 
 int Rb_Delete_Data(RB_TREE **Root, RB_TREE *Z)
 {
-
+	return 0;
 }
 
 int Rb_Insert(RB_TREE **Root)
