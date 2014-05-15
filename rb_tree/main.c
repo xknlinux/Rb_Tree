@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
     while(1)
     {
         printf("******************************\n*0: exit(0).                 *\n*1:input you wang inset data.*\n*2:delete the data:          *\n*3:print the tree.           *\n******************************\n\n\n");
-        scanf("%d", &n);
+		scanf("%d", &n);
         switch(n)
         {
             case 0:

@@ -1,4 +1,5 @@
 #include"version.h"
+
 #include<stdio.h>
 #include<malloc.h>
 #include"rb_tree.h"
@@ -64,14 +65,14 @@ int Rb_Delete_Data(RB_TREE **Root, RB_TREE *Z)
 		y->ST_Left->ST_Parent = y;
 		y->iColor = Z->iColor;
 	}
-	if (y_color == 'B')
+	if (y_color == 'B' && x != NULL)
 		Rb_Delete_Data_Fixup(Root, x);
 	return 0;
 }
 
 RB_TREE *Rb_FindBrother(RB_TREE *B)
 {
-	if (B = B->ST_Parent->ST_Left)
+	if (B == B->ST_Parent->ST_Left)
 		return B->ST_Parent->ST_Right;
 	else
 		return B->ST_Parent->ST_Left;
@@ -85,6 +86,8 @@ int Rb_Delete_Data_Fixup(RB_TREE **Root, RB_TREE *x)
 		if (x == x->ST_Parent->ST_Left)	//当x是左孩子
 		{
 			w = Rb_FindBrother(x);
+			if (w == NULL)
+				return -1;
 			if (w->iColor = 'R')
 			{
 				w->ST_Parent->iColor = 'R';
@@ -92,7 +95,7 @@ int Rb_Delete_Data_Fixup(RB_TREE **Root, RB_TREE *x)
 				Left_Rotate(Root, x->ST_Parent);
 				w = x->ST_Parent->ST_Right;
 			}
-			if (w->ST_Left->iColor == 'B' && w->ST_Right->iColor == 'B')
+			if ((w->ST_Left == NULL || w->ST_Left->iColor == 'B')&& (w->ST_Right == NULL || w->ST_Right->iColor == 'B'))
 			{
 				w->iColor = 'R';
 				x = x->ST_Parent;
@@ -114,18 +117,20 @@ int Rb_Delete_Data_Fixup(RB_TREE **Root, RB_TREE *x)
 		else			//当x是右孩子
 		{
 			w = Rb_FindBrother(x);
+			if (w == NULL)
+				return -1;
 			if (w->iColor == 'R')
 			{
 				w->ST_Parent->iColor = 'R';
 				w->iColor = 'B';
 				Right_Rotate(Root, x->ST_Parent);
 			}
-			if (w->ST_Left->iColor == 'B' && w->ST_Right->iColor == 'B')
+			if ( (w->ST_Left == NULL|| w->ST_Left->iColor == 'B') &&( w->ST_Right == NULL || w->ST_Right->iColor == 'B'))
 			{
 				w->iColor = 'R';
 				x = x->ST_Parent;
 			}
-			else if (w->ST_Left->iColor == 'B')
+			else if (w->ST_Left==NULL || w->ST_Left->iColor == 'B')
 			{
 				w->iColor = 'R';
 				w->ST_Right->iColor = 'B';
@@ -140,20 +145,20 @@ int Rb_Delete_Data_Fixup(RB_TREE **Root, RB_TREE *x)
 			}
 		}
 	}
-	x->iColor = 'R';
+	x->iColor = 'B';
 	return 0;
 }
 
 int Rb_Insert(RB_TREE **Root)
 {
-    RB_TREE *New = (RB_TREE *)malloc(sizeof(RB_TREE));
-    printf("please input you want insert data...\n-->: ");
-    scanf("%d", &(New->iNum));
-    New->ST_Right = NULL;
-    New->ST_Parent = NULL;
-    New->ST_Left = NULL;
-    New->iColor = 'R';
-    Rb_Insert_Data(Root, New);
+	RB_TREE *New = (RB_TREE *)malloc(sizeof(RB_TREE));
+	printf("please input you want insert data...\n-->: ");
+	scanf("%d", &(New->iNum));
+	New->ST_Right = NULL;
+	New->ST_Parent = NULL;
+	New->ST_Left = NULL;
+	New->iColor = 'R';
+	Rb_Insert_Data(Root, New);
     return 0;
 }
 
@@ -244,21 +249,24 @@ int Rb_Transplant(RB_TREE **Root, RB_TREE *v, RB_TREE *u)
 {
 	if (u->ST_Parent == NULL)
 		*Root = v;
-	else if (u->ST_Parent == u->ST_Parent->ST_Left)
+	else if (u == u->ST_Parent->ST_Left)
 		u->ST_Parent->ST_Left = v;
 	else
 		u->ST_Parent->ST_Right = v;
 	if (v != NULL)
 	v->ST_Parent = u->ST_Parent;
+	return 0;
 }
 
 RB_TREE *Rb_Minimum(RB_TREE *t)
 {
+	RB_TREE *p = NULL;
 	while (t != NULL)
 	{
+		p = t;
 		t = t->ST_Left;
 	}
-	return t;
+	return p;
 }
 
 int Left_Rotate(RB_TREE **Root, RB_TREE *x)
