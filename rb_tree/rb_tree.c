@@ -77,7 +77,7 @@ RB_TREE *Rb_FindBrother(RB_TREE *B)
 		return B->ST_Parent->ST_Left;
 }
 
-int Rb_Delete_Fixup(RB_TREE **Root, RB_TREE *x)
+int Rb_Delete_Data_Fixup(RB_TREE **Root, RB_TREE *x)
 {
 	RB_TREE *w;//指向x的兄弟节点
 	while (x != *Root && x->iColor == 'B')
@@ -97,7 +97,7 @@ int Rb_Delete_Fixup(RB_TREE **Root, RB_TREE *x)
 				w->iColor = 'R';
 				x = x->ST_Parent;
 			}
-			else if (w->ST_Right->iColor = 'B')
+			else if (w->ST_Right->iColor == 'B')
 			{
 				w->iColor = 'R';
 				w->ST_Left->iColor = 'B';
@@ -114,18 +114,18 @@ int Rb_Delete_Fixup(RB_TREE **Root, RB_TREE *x)
 		else			//当x是右孩子
 		{
 			w = Rb_FindBrother(x);
-			if (w->iColor = 'R')
+			if (w->iColor == 'R')
 			{
 				w->ST_Parent->iColor = 'R';
 				w->iColor = 'B';
 				Right_Rotate(Root, x->ST_Parent);
 			}
-			if (w->ST_Left->iColor == 'B' && w->ST_Right->iColor = 'B')
+			if (w->ST_Left->iColor == 'B' && w->ST_Right->iColor == 'B')
 			{
 				w->iColor = 'R';
 				x = x->ST_Parent;
 			}
-			else if (w->ST_Left->iColor = 'B')
+			else if (w->ST_Left->iColor == 'B')
 			{
 				w->iColor = 'R';
 				w->ST_Right->iColor = 'B';
